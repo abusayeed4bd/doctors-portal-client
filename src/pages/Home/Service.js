@@ -6,7 +6,7 @@ import fluoride from "../../assets/images/fluoride.png";
 
 const Service = () => {
   return (
-    <div class="text-center my-20 lg:mx-12">
+    <div class="text-center my-20 lg:mx-12  mx-5">
       <h4 class="text-primary text-2xl font-semibold uppercase">Our Service</h4>
       <h2 class="text-3xl">Services We Provide</h2>
       <div class="grid grid-cols-1 md:grid-cols-3  my-12 gap-4">

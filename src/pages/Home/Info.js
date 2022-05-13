@@ -6,7 +6,7 @@ import InfoCard from "./InfoCard";
 
 const Info = () => {
   return (
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 lg:mx-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 lg:mx-12 mx-5 my-12">
       <InfoCard
         img={clock}
         bg={"bg-gradient-to-r from-secondary to-primary"}
