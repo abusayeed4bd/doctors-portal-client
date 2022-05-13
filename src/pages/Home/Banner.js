@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <div
       style={{
-        background: `url(${bg}) no-repeat cover`,
+        background: `url(${bg}) no-repeat center center`,
       }}
       class="hero min-h-screen  lg:px-12 px-5"
     >
