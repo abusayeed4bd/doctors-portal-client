@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const Login = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const handleGoogleSignIn = () => {
+    signInWithGoogle();
+  };
   return (
     <div className="flex justify-center items-center h-screen">
       <div class="card w-96 bg-base-100 shadow-xl">
@@ -42,7 +46,10 @@ const Login = () => {
             <div class="flex flex-col w-full border-opacity-50">
               <div class="divider">OR</div>
             </div>
-            <button className="btn btn-accent btn-outline btn-sm w-full max-w-xs uppercase">
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn btn-accent btn-outline btn-sm w-full max-w-xs uppercase"
+            >
               Continue with Google
             </button>
           </p>
