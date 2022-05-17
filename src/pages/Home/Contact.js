@@ -16,19 +16,19 @@ const Contact = () => {
         <input
           type="text"
           placeholder="Your Name"
-          class="input w-full max-w-lg  mt-3"
+          className="input w-full max-w-lg  mt-3"
           required
         />
         <br />
         <input
           type="email"
           placeholder="Your Email"
-          class="input w-full max-w-lg mt-3"
+          className="input w-full max-w-lg mt-3"
           required
         />
         <br />
         <textarea
-          class="input w-full max-w-lg mt-3 h-32"
+          className="input w-full max-w-lg mt-3 h-32"
           name=""
           id=""
           cols="50"
