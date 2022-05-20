@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
+
 import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
 import UserRaw from './UserRaw';
 
 const AllUsers = () => {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/user", {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
-  }, [users]);
+  const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/user', {
+        method: 'GET',
+        headers:{
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => res.json()));
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+    
   return (
     <div>
       <h2 className="text-5xl text-primary">All Users :{users.length}</h2>
@@ -30,7 +29,7 @@ const AllUsers = () => {
         </thead>
         <tbody>
           {
-            users.map((user, index) => <UserRaw user={user} index={index} key={user._id}></UserRaw> )
+            users.map((user, index) => <UserRaw user={user} index={index} key={user._id} refetch={refetch}></UserRaw> )
           }
         </tbody>
       </table>

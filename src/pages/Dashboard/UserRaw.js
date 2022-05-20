@@ -1,7 +1,7 @@
 import React from 'react';
 import {toast} from 'react-toastify'
 
-const UserRaw = ({user,index}) => {
+const UserRaw = ({user,index, refetch}) => {
     const {email, role} = user;
     
     const makeAdmin = () =>{
@@ -11,10 +11,16 @@ const UserRaw = ({user,index}) => {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-        .then(res=> res.json())
+        .then(res=> {
+            if(res.status === 403){
+                toast.error('field to make admin')
+            }
+            return res.json()})
         .then(data =>{ 
-            toast('Successfully made an admin')
-            console.log(data)
+            if(data.modifiedCount > 0){
+                toast.success('Successfully made an admin')
+            refetch();
+            }
         })
     }
     return (
