@@ -9,36 +9,48 @@ import { useForm } from "react-hook-form";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
 import { useNavigation } from "react-day-picker";
+import useToken from "../../hooks/useToken";
 
 const Register = () => {
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
-  const handleGoogleSignIn = () => {
-    signInWithGoogle();
-  };
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
-  if (user) {
-    console.log(user);
-  }
+
+  const [token] = useToken(user || guser);
+
   const navigate = useNavigate();
   let signInError;
+
+  if (token) {
+    navigate("/appointment");
+  }
+
   if (error || gerror) {
     signInError = <p className="text-red-500">{error?.message}</p>;
   }
+
   if (loading || gloading) {
     return <Loading />;
   }
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle();
+  };
+
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
     navigate("/appointment");
   };
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="card w-96 bg-base-100 shadow-xl">
