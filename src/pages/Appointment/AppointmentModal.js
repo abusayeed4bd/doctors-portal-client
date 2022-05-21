@@ -22,7 +22,7 @@ const AppointmentModal = ({ treatment, date, setTreatment, refetch }) => {
       phone: event.target.phone.value,
     };
 
-    fetch("http://localhost:5000/booking", {
+    fetch("https://salty-oasis-22278.herokuapp.com/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",
