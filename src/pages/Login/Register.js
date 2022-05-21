@@ -150,7 +150,7 @@ const Register = () => {
             <input
               type="submit"
               className="btn btn-accent w-full max-w-xs text-white"
-              value="Login"
+              value="Create An Account"
             />
           </form>
           {/* daisy form */}
